@@ -1,3 +1,7 @@
+/*
+ * Pattern that provides an interface for creating objects in a superclass, allowing
+ * subclasses to alter the type of objects that will be created.
+ */
 var __extends = (this && this.__extends) || (function () {
     var extendStatics = function (d, b) {
         extendStatics = Object.setPrototypeOf ||
@@ -13,15 +17,22 @@ var __extends = (this && this.__extends) || (function () {
         d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
     };
 })();
+/*
+ * Shop class declares the factory method that is supposed to return an Product.
+ * Shop subclasses usually provide implementation of that method.
+ */
 var Shop = /** @class */ (function () {
     function Shop() {
     }
     Shop.prototype.calculatePrice = function () {
+        // Call the factory method to create a Product object.
         var product = this.getProduct();
+        // Return price.
         return product.getPrice() * 1.23;
     };
     return Shop;
 }());
+// ShopCreators override the factory method in order to change the resulting product's type.
 var ShopCreator1 = /** @class */ (function (_super) {
     __extends(ShopCreator1, _super);
     function ShopCreator1() {
@@ -42,6 +53,7 @@ var ShopCreator2 = /** @class */ (function (_super) {
     };
     return ShopCreator2;
 }(Shop));
+// Various implementations of Product interface.
 var Product1 = /** @class */ (function () {
     function Product1() {
     }
@@ -58,8 +70,11 @@ var Product2 = /** @class */ (function () {
     };
     return Product2;
 }());
-var showPrice = function (shopCreator) { return console.log(shopCreator.calculatePrice()); };
-console.log('Product1:');
+// Output.
+var showPrice = function (shopCreator) {
+    return console.log(shopCreator.calculatePrice());
+};
+console.log("Product1:");
 showPrice(new ShopCreator1());
-console.log('Product2:');
+console.log("Product2:");
 showPrice(new ShopCreator2());
