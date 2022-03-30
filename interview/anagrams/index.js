@@ -16,7 +16,6 @@ const anagrams = (stringA, stringB) => {
 };
 
 // #1
-
 // const handleMap = (str) => {
 //   const chars = {};
 
